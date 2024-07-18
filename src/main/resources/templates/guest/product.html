@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head><title th:text="${title} ?: 'Product'">Product</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+
+<body>
+<section layout:fragment="content"><h1>Categories List</h1>
+
+  <br><br><br>
+
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img  th:src="'data:image/png;base64, '+${product.image}" alt="Product Image" class="product-image">
+      </div>
+      <div class="col-md-6 product-detail">
+        <div class="product-title" th:text="${product.name}"></div>
+        <div class="product-price" th:text="${#numbers.formatDecimal(product.price, 1, 'COMMA', 0, 'COMMA')}"></div>
+
+        <p>Còn lại: <span th:text="${product.quantity}"></span> sản phẩm</p>
+        <hr>
+        <br>
+        <div class="product-description">
+          <h5>Mô tả</h5>
+          <p th:text="${product.description}">
+          </p>
+        </div>
+        <br>
+
+<!--        <button class="btn btn-buy btn-lg mb-3">Mua Ngay</button>-->
+        <form id="addcartform" action="/cart" method="post">
+          <input type="hidden" name="id" th:value="${product.id}">
+          <label for="quantityinput">Số lượng: </label>
+          <button type="button" onclick="changeQuantity(-1)">-</button>
+          <input name="quantity" type="number" id="quantityinput" value="1" min="1">
+          <button type="button" onclick="changeQuantity(1)">+</button>
+          <button type="submit" class="add-to-cart">Thêm Vào Giỏ Hàng</button>
+        </form>
+
+        <script>
+          function changeQuantity(amount) {
+            var input = document.getElementById('quantityinput');
+            var currentValue = parseInt(input.value);
+            var newValue = currentValue + amount;
+            if (newValue >= 1) { // Ensure the value doesn't go below 1
+              input.value = newValue;
+            }
+          }
+        </script>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+
+
+</html>

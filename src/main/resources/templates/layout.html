@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security5" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Layout page</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<header>
+    <nav>
+
+            <a href="/" class="logo h1 disable_decoration"><img src="/img/logo.png" alt="Logo">JACLOTH</a>
+
+
+        <ul class="nav-links">
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="/about">Giới thiệu</a></li>
+            <li><a href="/products">Sản phẩm</a></li>
+            </div>
+        </ul>
+        <div class="search">
+            <form action="/products/search">
+            <input type="text" name="query" placeholder="Tìm kiếm">
+            <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #3b3b3b;"></i></button>
+            </form>
+        </div>
+        <div class="nav-icons" sec:authorize="isAuthenticated()">
+            <a class="p-3 disable_decoration" href="/invoice"><i class="fa-solid fa-receipt fa-2xl" style="color: #4d4d4d;padding-right: 10px"></i>Đơn đặt hàng</a>
+            <a class="p-3 disable_decoration" href="/cart"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #4d4d4d;padding-right: 10px"></i>Giỏ hàng</a>
+        </div>
+        <div class="nav-icons" sec:authorize="!isAuthenticated()">
+            <a class="p-3 disable_decoration" href="/register"><button class="btn btn-dark">Đăng ký</button></a>
+            <a class="p-3 disable_decoration" href="/login"><button class="btn btn-dark">Đăng nhập</button></a>
+
+        </div>
+    </nav>
+</header>
+<section layout:fragment="content">
+    <!--<section layout:fragment="content">-->
+    <!--    <p>Page content goes here</p>-->
+</section>
+<footer>
+    <div class="footer">
+        <div class="container">
+            <div class="follow-us">
+                <h3>INTRODUCE</h3>
+                <ul>
+                    <li>SPRING BOOT</li>
+                    <li>WEB BAN HANG</li>
+                    <li>JACLOTH</li>
+                </ul>
+            </div>
+            <div class="about-us">
+                <h3>OUR TEAM CONSISTS OF:</h3>
+                <ul>
+                    <li>NGUYEN NHAT HAO</li>
+                    <li>VU NGUYEN TUAN VI</li>
+                    <li>DOAN THANH TUAN VU</li>
+                    <li>NGUYEN TIEN PHUC</li>
+
+                </ul>
+            </div>
+            <div class="contact-us">
+                <h3>CONTACT US IN VANLANG UNIVERSITY</h3>
+                <ul>
+                    <li>Cơ sở 1: 45 Nguyễn Khắc Nhu, P. Cô Giang, Q.1, TP. HCM</li>
+                    <li>Cơ sở 2: 233A Phan Văn Trị, P.11, Q. Bình Thạnh, TP. HCM</li>
+                    <li>Cơ sở 3: 69/68 Đặng Thùy Trâm, P. 13, Q. Bình Thạnh, TP. HCM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>_____ Đồ án nhóm cuối kỳ môn Lập Trình Java Nâng Cao _____</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
