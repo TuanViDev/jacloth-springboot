@@ -8,52 +8,64 @@
 <body>
 <section layout:fragment="content"><h1>Products List</h1>
 
-    <br><br><br>
+    <div class="homepage">
 
-    <!--    <div><a th:href="@{/admin/product/add}" class="btn btn-primary mb-3">Add New Product</a></div>-->
+        <br><br><br>
 
-    <div>
-        <br>
-        <div th:if="${param.deletedSuccess}" class="btn btn-success">
-            Xóa product thành công
-        </div>
-        <div th:if="${param.deletedUnsuccess}" class="btn btn-danger">
-            Xóa product thất bại
+        <div class="home-content">
+            <div class="showcategory container p-5">
+                <h1 class="d-flex justify-content-center">HÓA ĐƠN ĐẶT HÀNG</h1>
+
+                <div>
+                    <br>
+                    <div th:if="${param.deletedSuccess}" class="btn btn-success">
+                        Xóa product thành công
+                    </div>
+                    <div th:if="${param.deletedUnsuccess}" class="btn btn-danger">
+                        Xóa product thất bại
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th style="width: 300px; padding-left: 50px">ID</th>
+                        <th style="text-align: center">Số lượng</th>
+                        <th style="text-align: center">Ngày đặt</th>
+                        <th style="text-align: center">Trạng thái</th>
+                        <th style="text-align: center">Detail</th>
+
+                    </tr>
+
+
+                    </thead>
+                    <tbody>
+                    <tr th:each="invoice : ${invoices}">
+                        <td style="padding-left: 50px" th:text="${invoice.id}"></td>
+                        <td style="text-align: center" th:text="${#numbers.formatDecimal(invoice.totalAmount, 1, 'COMMA', 0, 'COMMA')}"></td>
+                        <td style="text-align: center" th:text="${invoice.createdAt}"></td>
+                        <td style="text-align: center" th:text="${invoice.status}"></td>
+                        <td style="text-align: center">
+                            <a th:href="'/invoice/'+${invoice.id}">
+                                <button class="btn btn-success">
+                                    Chi tiết đơn hàng
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
         </div>
     </div>
 
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-        <tr>
-            <th style="width: 300px; padding-left: 50px">ID</th>
-            <th style="text-align: center">Amount</th>
-            <th style="text-align: center">Order Date</th>
-            <th style="text-align: center">Status</th>
-            <th style="text-align: center">Detail</th>
-
-        </tr>
+    <!--    <div><a th:href="@{/admin/product/add}" class="btn btn-primary mb-3">Add New Product</a></div>-->
 
 
-        </thead>
-        <tbody>
-        <tr th:each="invoice : ${invoices}">
-            <td style="padding-left: 50px" th:text="${invoice.id}"></td>
-            <td style="text-align: center" th:text="${#numbers.formatDecimal(invoice.totalAmount, 1, 'COMMA', 0, 'COMMA')}"></td>
-            <td style="text-align: center" th:text="${invoice.createdAt}"></td>
-            <td style="text-align: center" th:text="${invoice.status}"></td>
-            <td style="text-align: center">
-                <a th:href="'/invoice/'+${invoice.id}">
-                    <button class="btn btn-success">
-                        Chi tiết đơn hàng
-                    </button>
-                </a>
-            </td>
-        </tr>
-
-
-
-        </tbody>
-    </table>
 
 
 

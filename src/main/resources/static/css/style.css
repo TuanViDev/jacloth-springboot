@@ -55,7 +55,7 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: black;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 /*  */
 .search{
@@ -358,6 +358,7 @@ button {
     margin-right: auto;
     width: 80%;
     height: auto;
+    min-height: 500px;
     background-color: white;
 }
 

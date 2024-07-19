@@ -8,76 +8,91 @@
 <body>
 <section layout:fragment="content"><h1>Products List</h1>
 
-<br><br><br>
+    <div class="homepage">
 
-    <div><a th:href="@{/admin/product/add}" class="btn btn-primary mb-3">Add New Product</a></div>
+        <br><br><br>
 
-    <div>
-        <br>
-        <div th:if="${param.deletedSuccess}" class="btn btn-success">
-            Xóa product thành công
-        </div>
-        <div th:if="${param.deletedUnsuccess}" class="btn btn-danger">
-            Xóa product thất bại
+        <div class="home-content">
+            <div class="showcategory container p-5">
+                <h1 class="d-flex justify-content-center">SẢN PHẨM</h1>
+
+                <div class="d-flex justify-content-center p-2">
+                    <br>
+                    <div th:if="${param.setQuantitySuccessful}" class="btn btn-success">
+                        Chỉnh sửa số lượng hàng thành công
+                    </div>
+                    <div th:if="${param.deletedSuccess}" class="btn btn-success">
+                        Xóa sản phẩm thành công
+                    </div>
+                    <div th:if="${param.deletedUnsuccess}" class="btn btn-danger">
+                        Xóa sản phẩm thất bại
+                    </div>
+                </div>
+
+                <div><a th:href="@{/admin/product/add}" class="btn btn-primary mb-3 d-flex justify-content-center">Thêm sản phẩm</a></div>
+
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Hình ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Đơn giá</th>
+<!--                        <th>Mô tả</th>-->
+                        <th>Danh mục</th>
+                        <th>Thao tác</th>
+                        <th>Số lượng sản phẩm</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}"></td>
+                        <td> <div class="thumbnail"><img th:src="'data:image/png;base64, '+${product.getImage()}" /></div> </td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+<!--                        <td th:text="${product.description}"></td>-->
+                        <td th:text="${product.category_id.name}"></td>
+                        <td>
+                            <a th:href="@{/admin/product/update/{id}(id=${product.id})}" class="btn btn-success btn-sm">Edit</a>
+                            <!--                <a-->
+                            <!--                        th:href="@{/admin/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm"-->
+                            <!--                        onclick="return confirm('Are you sure?')">Delete</a>-->
+                            <form th:action="@{/admin/product/delete/{id}(id=${product.id})}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <h4 th:text="${product.quantity}"></h4>
+                            <form th:action="@{/admin/product/setquantity}" method="post">
+                                <input required name = "id" type="hidden" th:value="${product.id}">
+                                <input required type="number" name="quantity" th:value="${product.quantity}"
+                                       class="form-control d-inline-block"
+                                       style="width: 70px;">
+                                <button type="submit" class="btn btn-warning btn-sm">Điều chỉnh số lượng</button>
+                                <!--                    <input type="hidden"-->
+                                <!--                           th:value="${product.id}"-->
+                                <!--                           name="productId"/>-->
+                            </form>
+
+                            <form th:action="@{/admin/product/addquantity}" method="post">
+                                <input required name = "id" type="hidden" th:value="${product.id}">
+                                <input required type="number" name="quantity"
+                                       class="form-control d-inline-block"
+                                       style="width: 70px;" placeholder="+/-">
+                                <button type="submit" class="btn btn-warning btn-sm">Tăng/giảm số lượng</button>
+                            </form>
+
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
         </div>
     </div>
 
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Action</th>
-            <th>Quantity</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.id}"></td>
-            <td> <div class="thumbnail"><img th:src="'data:image/png;base64, '+${product.getImage()}" /></div> </td>
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.price}"></td>
-            <td th:text="${product.description}"></td>
-            <td th:text="${product.category_id.name}"></td>
-            <td>
-                <a th:href="@{/admin/product/update/{id}(id=${product.id})}" class="btn btn-success btn-sm">Edit</a>
-                <!--                <a-->
-                <!--                        th:href="@{/admin/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm"-->
-                <!--                        onclick="return confirm('Are you sure?')">Delete</a>-->
-                <form th:action="@{/admin/product/delete/{id}(id=${product.id})}" method="POST" style="display:inline;">
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                </form>
-            </td>
-            <td>
-                <h4 th:text="${product.quantity}"></h4>
-                <form th:action="@{/admin/product/setquantity}" method="post">
-                    <input required name = "id" type="hidden" th:value="${product.id}">
-                    <input required type="number" name="quantity" th:value="${product.quantity}"
-                           class="form-control d-inline-block"
-                           style="width: 70px;">
-                    <button type="submit" class="btn btn-warning btn-sm">Set</button>
-<!--                    <input type="hidden"-->
-<!--                           th:value="${product.id}"-->
-<!--                           name="productId"/>-->
-                </form>
 
-                <form th:action="@{/admin/product/addquantity}" method="post">
-                    <input required name = "id" type="hidden" th:value="${product.id}">
-                    <input required type="number" name="quantity"
-                           class="form-control d-inline-block"
-                           style="width: 70px;">
-                    <button type="submit" class="btn btn-warning btn-sm">Add</button>
-                </form>
-
-
-            </td>
-        </tr>
-        </tbody>
-    </table>
 </section>
 </body>
 </html>

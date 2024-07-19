@@ -8,70 +8,82 @@
 <body>
 <section layout:fragment="content"><h1>Products List</h1>
 
-    <br><br><br>
+    <div class="homepage">
 
-    <!--    <div><a th:href="@{/admin/product/add}" class="btn btn-primary mb-3">Add New Product</a></div>-->
+        <br><br><br>
 
-    <div>
-        <br>
-        <div th:if="${param.deletedSuccess}" class="btn btn-success">
-            Xóa product thành công
-        </div>
-        <div th:if="${param.deletedUnsuccess}" class="btn btn-danger">
-            Xóa product thất bại
+        <div class="home-content">
+            <div class="showcategory container p-5">
+                <h1 class="d-flex justify-content-center">GIỎ HÀNG</h1>
+
+                <div>
+                    <br>
+                    <div th:if="${param.deletedSuccess}" class="btn btn-success">
+                        Xóa product thành công
+                    </div>
+                    <div th:if="${param.deletedUnsuccess}" class="btn btn-danger">
+                        Xóa product thất bại
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th style="width: 250px; padding-left: 50px">Hình ảnh</th>
+                        <th style="width: 250px; padding-left: 50px">Tên sản phẩm</th>
+                        <th style="width: 200px; text-align: center">Đơn giá</th>
+                        <th style="width: 200px; text-align: center">Số lượng</th>
+                        <th style="width: 150px; text-align: center">Thao tác</th>
+                        <th style="text-align: center">Thành tiền</th>
+
+                        <!--            <th>Description</th>-->
+                        <!--            <th>Category</th>-->
+
+
+                    </tr>
+
+
+                    </thead>
+                    <tbody>
+                    <tr th:each="cartItem : ${cartItems}">
+                        <td style="padding-left: 50px">
+                            <div class="thumbnail"><img th:src="'data:image/png;base64, '+${cartItem.product.image}"/></div>
+                        </td>
+                        <td style="padding-left: 50px" th:text="${cartItem.product.name}"></td>
+                        <td style="text-align: center" th:text="${#numbers.formatDecimal(cartItem.product.price, 1, 'COMMA', 0, 'COMMA')}"></td>
+                        <td style="text-align: center" th:text="${cartItem.quantity}"></td>
+                        <td style="text-align: center">
+                            <form action="/cart/delete" method="post">
+                                <input type="hidden" name="id" th:value="${cartItem.id}">
+                                <button style="font-size: 20px" type="submit" class="btn"><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </td>
+                        <td style="text-align: center" id="total-amount"
+                            th:text="${#numbers.formatDecimal(cartItem.product.price * cartItem.quantity, 1, 'COMMA', 0, 'COMMA')}"></td>
+
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="total-row" style="font-size: 20px;color: #e64a19;text-align: center" th:text="${#numbers.formatDecimal(total, 1, 'COMMA', 0, 'COMMA')}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <a href="/checkout"><button class="checkout-button" id="checkout">Đặt hàng</button></a>
+
+            </div>
         </div>
     </div>
 
-        <table class="table table-bordered table-hover">
-            <thead class="table-dark">
-            <tr>
-                <th style="width: 300px; padding-left: 50px">Preview</th>
-                <th style="width: 400px; padding-left: 50px">Name</th>
-                <th style="width: 200px; text-align: center">Price</th>
-                <th style="width: 200px; text-align: center">Quantity</th>
-                <th style="width: 200px; text-align: center">Action</th>
-                <th style="text-align: center">Total</th>
-
-                <!--            <th>Description</th>-->
-                <!--            <th>Category</th>-->
+    <!--    <div><a th:href="@{/admin/product/add}" class="btn btn-primary mb-3">Add New Product</a></div>-->
 
 
-            </tr>
-
-
-            </thead>
-            <tbody>
-            <tr th:each="cartItem : ${cartItems}">
-                <td style="padding-left: 50px">
-                    <div class="thumbnail"><img th:src="'data:image/png;base64, '+${cartItem.product.image}"/></div>
-                </td>
-                <td style="padding-left: 50px" th:text="${cartItem.product.name}"></td>
-                <td style="text-align: center" th:text="${#numbers.formatDecimal(cartItem.product.price, 1, 'COMMA', 0, 'COMMA')}"></td>
-                <td style="text-align: center" th:text="${cartItem.quantity}"></td>
-                <td style="text-align: center">
-                    <form action="/cart/delete" method="post">
-                        <input type="hidden" name="id" th:value="${cartItem.id}">
-                        <button style="font-size: 20px" type="submit" class="btn"><i class="fa-solid fa-trash"></i></button>
-                    </form>
-                </td>
-                <td style="text-align: center" id="total-amount"
-                    th:text="${#numbers.formatDecimal(cartItem.product.price * cartItem.quantity, 1, 'COMMA', 0, 'COMMA')}"></td>
-
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="total-row" style="font-size: 20px;color: #e64a19;text-align: center" th:text="${#numbers.formatDecimal(total, 1, 'COMMA', 0, 'COMMA')}"></td>
-            </tr>
-
-            </tbody>
-        </table>
-
-    <a href="/checkout"><button class="checkout-button" id="checkout">Đặt hàng</button></a>
 
 
 
