@@ -25,6 +25,7 @@ public interface  ProductRepository extends JpaRepository<Product, Long>
     @Query(value = "SELECT p.* FROM products p WHERE p.name LIKE %?1%", nativeQuery = true)
     public List<Product> findByQuery(String name);
 
-
+    @Query(value = "SELECT SUM(sold) from products", nativeQuery = true)
+    public int getSoldOfAllProducts();
 
 }

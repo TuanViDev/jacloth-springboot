@@ -13,4 +13,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long>
 {
     @Query(value = "SELECT * FROM invoices WHERE user_id=?",nativeQuery = true)
     public List<Invoice> findInvoicesByUserId(Long id);
+
+    @Query(value = "SELECT SUM(total_amount) from invoices", nativeQuery = true)
+    public int getAmountOfAllInvoices();
 }

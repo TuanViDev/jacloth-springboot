@@ -6,32 +6,45 @@
 </head>
 <body>
 
-<section layout:fragment="content" class="container mt-5">
-    <br><br><br>
-    <h1 class="mb-4">Update Category</h1>
-    <form action="/admin/category/update" method="POST">
+<section layout:fragment="content" class="mt-5">
+    <div class="homepage">
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Category ID:</label>
-            <input type="text" id="id" name="id" class="form-control" th:value="${category.id}" readonly/>
-        </div>
+        <br><br><br>
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Category Name:</label>
-            <input type="text" id="name" name="name" class="form-control" th:value="${category.name}"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <div class="home-content">
+            <div class="showcategory container p-5">
+                <h1 class="d-flex justify-content-center">CHỈNH SỬA DANH MỤC SẢN PHẨM</h1>
 
-    <div>
-        <br>
-        <div th:if="${param.error}" class="btn btn-danger">
-            Cập nhật category thất bại
-        </div>
-        <div th:if="${param.success}" class="btn btn-success">
-            Cập nhật category thành công
+                <form action="/admin/category/update" method="POST">
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">ID:</label>
+                        <input type="text" id="id" name="id" class="form-control" th:value="${category.id}" readonly/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Tên danh mục:</label>
+                        <input type="text" id="name" name="name" class="form-control" th:value="${category.name}"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </form>
+
+                <div>
+                    <br>
+                    <div th:if="${param.error}" class="btn btn-danger">
+                        Cập nhật danh mục thất bại
+                    </div>
+                    <div th:if="${param.success}" class="btn btn-success">
+                        Cập nhật danh mục thành công
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
+
+
+
 
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

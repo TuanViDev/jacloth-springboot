@@ -21,11 +21,12 @@
                     <div class="col-sm border pt-4 pb-2 disable_decoration album" th:each="product : ${productsByCategory[category.name]}">
 
                         <a style="text-decoration: none;" th:href="'/product/'+${product.id}">
-                        <img class="thumbnail-homepage" th:src="'data:image/png;base64, '+${product.image}"/>
-                        <div style="text-align: center">
-                            <br>
-                            <p th:text="${product.name}"></p>
-                        </div>
+                            <img class="thumbnail-homepage" th:src="'data:image/png;base64, '+${product.image}"/>
+                            <div style="text-align: center">
+                                <br>
+                                <p th:text="${product.name}"></p>
+                                <p th:text="${#numbers.formatDecimal(product.price, 1, 'COMMA', 0, 'COMMA')}+' đ'"></p>
+                            </div>
                         </a>
 
                     </div>

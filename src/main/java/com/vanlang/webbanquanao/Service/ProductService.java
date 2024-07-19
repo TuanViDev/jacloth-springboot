@@ -20,6 +20,7 @@ public class ProductService
     }
 
     // READ
+
     public List<Product> getProductsByCategoryId(Long id)
     {
         return repository.findByCategoryId(id);
@@ -48,6 +49,7 @@ public class ProductService
     {
         return repository.findById(Long.valueOf(id)).orElse(null);
     }
+
 
     // UPDATE
     public Product updateProduct(Product product)

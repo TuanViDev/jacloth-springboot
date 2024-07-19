@@ -6,49 +6,66 @@
 </head>
 
 <body>
-<section layout:fragment="content"><h1>Categories List</h1>
+<section layout:fragment="content">
 
-<br><br><br>
+    <h1>Categories List</h1>
 
-    <div><a th:href="@{/admin/category/add}" class="btn btn-primary mb-3">Add New Catgory</a></div>
+    <div class="homepage">
 
-    <div>
-        <br>
-        <div th:if="${param.deletedSuccess}" class="btn btn-success">
-            Xóa category thành công
-        </div>
-        <div th:if="${param.deletedUnsuccess}" class="btn btn-danger">
-            Xóa category thất bại
-        </div>
-        <div th:if="${param.unableToDelete}" class="btn btn-danger">
-            Xóa category thất bại do danh mục ton tai sản phẩm
+        <br><br><br>
+
+        <div class="home-content">
+            <div class="showcategory container p-5">
+                <h1 class="d-flex justify-content-center">DANH MỤC SẢN PHẨM</h1>
+
+                <div class="p-2 d-flex justify-content-center">
+                    <br>
+                    <div th:if="${param.deletedSuccess}" class="btn btn-success">
+                        Xóa category thành công
+                    </div>
+                    <div th:if="${param.deletedUnsuccess}" class="btn btn-danger">
+                        Xóa category thất bại
+                    </div>
+                    <div th:if="${param.unableToDelete}" class="btn btn-danger">
+                        Xóa category thất bại do danh mục còn tồn tại sản phẩm
+                    </div>
+                </div>
+                <div><a th:href="@{/admin/category/add}" class="btn btn-primary mb-3 d-flex justify-content-center">Thêm danh mục sản phẩm</a></div>
+
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên danh mục</th>
+                        <th>Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="category : ${categories}">
+                        <td th:text="${category.id}"></td>
+                        <td th:text="${category.name}"></td>
+                        <td>
+                            <a th:href="@{/admin/category/update/{id}(id=${category.id})}"
+                               class="btn btn-success btn-sm">Edit</a>
+                            <!--                <a-->
+                            <!--                        th:href="@{/admin/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm"-->
+                            <!--                        onclick="return confirm('Are you sure?')">Delete</a>-->
+                            <form th:action="@{/admin/category/delete/{id}(id=${category.id})}" method="POST"
+                                  style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure?')">Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
         </div>
     </div>
 
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="category : ${categories}">
-            <td th:text="${category.id}"></td>
-            <td th:text="${category.name}"></td>
-            <td>
-                <a th:href="@{/admin/category/update/{id}(id=${category.id})}" class="btn btn-success btn-sm">Edit</a>
-<!--                <a-->
-<!--                        th:href="@{/admin/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm"-->
-<!--                        onclick="return confirm('Are you sure?')">Delete</a>-->
-                <form th:action="@{/admin/category/delete/{id}(id=${category.id})}" method="POST" style="display:inline;">
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+
 </section>
 </body>
 </html>

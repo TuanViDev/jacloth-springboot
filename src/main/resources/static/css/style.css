@@ -473,3 +473,11 @@ button {
 {
     height: auto;
 }
+
+.statistic-layout
+{
+    width: 50%;
+    height: auto;
+    /*padding: 30px;*/
+    border-radius: 25px;
+}
