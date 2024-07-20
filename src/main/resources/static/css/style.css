@@ -362,6 +362,11 @@ button {
     background-color: white;
 }
 
+.homeHeader
+{
+    background-color: white;
+}
+
 .thumbnail-homepage {
     display: block;
     margin-left: auto;
