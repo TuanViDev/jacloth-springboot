@@ -38,6 +38,14 @@ public class HomeController
         return "/guest/home";
     }
 
+    @GetMapping("/about-us")
+    public String showAboutUs(Model model)
+    {
+        return  "/guest/about-us";
+    }
+
+
+
     ///////////// API ///////////////
     @GetMapping("/api/guest/GetProductByCategoryId/{id}")
     @ResponseBody

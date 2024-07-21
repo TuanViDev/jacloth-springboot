@@ -47,11 +47,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/img/**", "/js/**", "/css/**", "/webjars/**","/api/guest/**").permitAll()
-                        .requestMatchers("/cart","/invoice", "/checkout").authenticated()
-                        .requestMatchers("/","/home","/register","/product/**").permitAll()
+                        .requestMatchers("/img/**", "/js/**", "/css/**", "/webjars/**").permitAll()
+                        .requestMatchers("/cart","/invoice/**", "/checkout/**").authenticated()
+                        .requestMatchers("/","/login","/register","/about-us","/products/**","/logout","/product/**").permitAll()
                         .requestMatchers("/admin/**","/api/admin/**").hasAuthority("ADMIN")
-                        .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults())
 

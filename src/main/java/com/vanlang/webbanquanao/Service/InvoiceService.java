@@ -74,10 +74,11 @@ public class InvoiceService
         }
 
         invoice.setTotalAmount(amount);
+        invoice = invoiceRepository.save(invoice);
 
         if (invoice.getPaymentMethod().equals("cash"))
         {
-            invoice.setStatus("Yêu cầu xác nhận đặt hàng");
+            invoice.setStatus("Xác nhận đặt hàng");
         }
         else
         {

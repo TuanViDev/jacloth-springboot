@@ -14,8 +14,9 @@
 
         <ul class="nav-links">
             <li><a class="h5" href="/">Trang chủ</a></li>
-            <li><a class="h5" href="/about">Giới thiệu</a></li>
+            <li><a class="h5" href="/about-us">Giới thiệu</a></li>
             <li><a class="h5" href="/products">Sản phẩm</a></li>
+<!--            <li sec:authorize ="hasAuthority('ADMIN')"><a class="h5" href="/admin">Quản lý</a></li>-->
             </div>
         </ul>
         <div class="search">
@@ -25,9 +26,11 @@
             </form>
         </div>
         <div class="nav-icons" sec:authorize="isAuthenticated()">
+<!--            <a class="p-3 disable_decoration" href="/logout">Quản lý</a>-->
             <a class="p-3 disable_decoration" href="/invoice"><i class="fa-solid fa-receipt fa-2xl" style="color: #4d4d4d;padding-right: 10px"></i>Đơn đặt hàng</a>
             <a class="p-3 disable_decoration" href="/cart"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #4d4d4d;padding-right: 10px"></i>Giỏ hàng</a>
             <a class="p-3 disable_decoration" href="/logout"><i class="fa-solid fa-arrow-right-from-bracket fa-2xl" style="color: #4d4d4d;padding-right: 10px"></i>Đăng xuất</a>
+
         </div>
         <div class="nav-icons" sec:authorize="!isAuthenticated()">
             <a class="p-3 disable_decoration" href="/register"><button class="btn btn-dark">Đăng ký</button></a>

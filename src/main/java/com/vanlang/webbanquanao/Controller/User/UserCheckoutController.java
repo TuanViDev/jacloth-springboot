@@ -64,7 +64,7 @@ public class UserCheckoutController
         }
         else
         {
-            return "redirect:/checkout";
+            return "redirect:/invoice/"+invoice.getId();
         }
 
     }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin-layout}">
-<head><title th:text="${title} ?: 'Product'">Product</title>
+<head><title>Quản lý sản phẩm</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
@@ -13,8 +13,12 @@
         <br><br><br>
 
         <div class="home-content">
+            <div class="homeHeader container d-flex justify-content-center p-4"
+                 style="background-color: black;color: white; ;width: 100%">
+                <p class="h1 d-flex justify-content-center">QUẢN LÝ SẢN PHẨM</p>
+            </div>
             <div class="showcategory container p-5">
-                <h1 class="d-flex justify-content-center">SẢN PHẨM</h1>
+<!--                <h1 class="d-flex justify-content-center">SẢN PHẨM</h1>-->
 
                 <div class="d-flex justify-content-center p-2">
                     <br>
@@ -38,8 +42,8 @@
                         <th>Hình ảnh</th>
                         <th>Tên sản phẩm</th>
                         <th>Đơn giá</th>
-<!--                        <th>Mô tả</th>-->
                         <th>Danh mục</th>
+                        <th>Lượt mua</th>
                         <th>Thao tác</th>
                         <th>Số lượng sản phẩm</th>
                     </tr>
@@ -52,6 +56,7 @@
                         <td th:text="${product.price}"></td>
 <!--                        <td th:text="${product.description}"></td>-->
                         <td th:text="${product.category_id.name}"></td>
+                        <td th:text="${product.sold}"></td>
                         <td>
                             <a th:href="@{/admin/product/update/{id}(id=${product.id})}" class="btn btn-success btn-sm">Edit</a>
                             <!--                <a-->

@@ -10,21 +10,24 @@
 
     <br><br><br>
 
-    <form action="/create-payment-link" method="post">
-        <input type="hidden" name="invoiceId" th:value="${invoice.id}">
-        <button class="btn" type="submit" id="create-payment-link-btn">Tiến hành thanh toán</button>
-    </form>
+    <div class="homepage">
 
+        <br><br><br>
 
-    <div>
-        <br>
-        <div th:if="${param.paidSuccessful}" class="btn btn-danger">
-            Thanh toán thành công
-        </div>
-        <div th:if="${param.success}" class="btn btn-success">
-            Thêm product thành công
+        <div class="home-content">
+            <div class="showcategory container p-5">
+                <h1 class="d-flex justify-content-center">THANH TOÁN TRỰC TUYẾN QUA PAYOS</h1>
+
+                <form action="/create-payment-link" method="post" CLASS="pt-5 d-flex justify-content-center">
+                    <input type="hidden" name="invoiceId" th:value="${invoice.id}">
+                    <button style="height: 100px;width: 500px" class="btn" type="submit" id="create-payment-link-btn"><p class="h3">Tiến hành thanh toán</p></button>
+                </form>
+
+            </div>
         </div>
     </div>
+
+
 
 
 

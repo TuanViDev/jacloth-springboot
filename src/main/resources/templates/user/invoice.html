@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
-<head><title th:text="${title} ?: 'Product'">Product</title>
+<head><title>Chi tiết hóa đơn</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-<section layout:fragment="content"><h1>Products List</h1>
+<section layout:fragment="content">
+<!--    <h1>Products List</h1>-->
 
+    <br><br>
     <div class="homepage">
 
         <br><br><br>
 
         <div class="home-content">
+            <div class="homeHeader container d-flex justify-content-center p-4"
+                 style="background-color: black;color: white; ;width: 100%">
+                <p class="h1 d-flex justify-content-center">CHI TIẾT HÓA ĐƠN</p>
+            </div>
             <div class="showcategory container p-5">
-                <h1 class="d-flex justify-content-center">CHI TIẾT HÓA ĐƠN</h1>
+<!--                <h1 class="d-flex justify-content-center">CHI TIẾT HÓA ĐƠN</h1>-->
+
+                <div class="p-3 d-flex justify-content-center">
+                    <br>
+                    <div th:if="${param.paidSuccess}" class="btn btn-success">
+                        Thanh toán thành công
+                    </div>
+                    <div th:if="${param.paidUnsuccess}" class="btn btn-danger">
+                        Thanh toán thất bại
+                    </div>
+                </div>
 
                 <table class="table table-bordered table-hover">
                     <thead class="table-dark">
@@ -94,7 +110,6 @@
                     </div>
 
                     <button th:if="${invoice.status == 'Chưa thanh toán'}" type="submit" class="checkout-button" id="checkout">Thanh toán</button>
-
                 </form>
 
             </div>

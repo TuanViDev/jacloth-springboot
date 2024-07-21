@@ -24,14 +24,16 @@ public class WebhookPayosController
 
         if (cancel.equals(true))
         {
-            return "redirect:/invoice?paidUnsuccessful";
+            Invoice invoice = invoiceService.getInvoiceById(invoiceId);
+            invoice.setStatus("Đã hủy");
+            return "redirect:/invoice/"+invoice.getId()+"?paidUnsuccess";
         }
         else if (status.equals("PAID"))
         {
             Invoice invoice = invoiceService.getInvoiceById(invoiceId);
             invoice.setStatus("Đã thanh toán");
             invoiceService.saveInvoice(invoice);
-            return "redirect:/invoice?paidSuccessful";
+            return "redirect:/invoice/"+invoice.getId()+"?paidSuccess";
         }
         else
         {

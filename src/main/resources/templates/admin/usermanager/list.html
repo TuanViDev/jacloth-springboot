@@ -13,8 +13,12 @@
         <br><br><br>
 
         <div class="home-content">
+            <div class="homeHeader container d-flex justify-content-center p-4"
+                 style="background-color: black;color: white; ;width: 100%">
+                <p class="h1 d-flex justify-content-center">QUẢN LÝ NGƯỜI DÙNG</p>
+            </div>
             <div class="showcategory container p-5">
-                <h1 class="d-flex justify-content-center">QUẢN LÝ NGƯỜI DÙNG</h1>
+<!--                <h1 class="d-flex justify-content-center">QUẢN LÝ NGƯỜI DÙNG</h1>-->
 
                 <div>
                     <br>
@@ -59,7 +63,7 @@
                             </form>
                             <form th:action="@{/admin/usermanager/delete}" method="POST" style="display:inline;">
                                 <input type="hidden" name="id" th:value="${user.id}">
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Xóa tài khoản</button>
                             </form>
                         </td>
 

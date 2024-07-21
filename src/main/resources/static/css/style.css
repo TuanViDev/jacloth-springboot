@@ -55,7 +55,7 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: black;
-    /*font-weight: bold;*/
+    font-weight: bold;
 }
 /*  */
 .search{
@@ -327,15 +327,15 @@ button {
 }
 
 .checkout-button {
-    background-color: #555;
+    background-color: #6e6e6e;
     color: white;
     padding: 16px 20px;
     border: none;
     cursor: pointer;
-    opacity: 0.8;
-    position: fixed;
-    bottom: 23px;
-    right: 28px;
+    /*opacity: 0.8;*/
+    /*position: fixed;*/
+    /*bottom: 23px;*/
+    /*right: 200px;*/
     width: 280px;
 }
 
@@ -413,7 +413,7 @@ button {
 }
 
 #result {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
@@ -484,6 +484,23 @@ button {
 {
     width: 50%;
     height: auto;
-    /*padding: 30px;*/
     border-radius: 25px;
+}
+
+.about-us {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 25px 0;
+}
+.about-us h2 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.about-us p {
+    text-indent: 2em;
+    margin-bottom: 10px;
+}
+.about-us .highlight {
+    font-weight: bold;
+    color: #007bff;
 }
