@@ -28,8 +28,10 @@
         <br>
         <div class="product-description">
           <h5>Mô tả</h5>
-          <p th:text="${product.description}">
-          </p>
+          <div th:each="line : ${productDescriptionLines}">
+            <p th:text="${line}" style="margin: 5px"></p>
+          </div>
+
         </div>
         <br>
 

@@ -32,6 +32,9 @@
                     <a href="/products" class="disable_decoration border" style="background-color: #888888">
                         <button>Tất cả</button>
                     </a>
+                    <a href="/products/best-sellers" class="disable_decoration border" style="background-color: #888888">
+                        <button>Bán chạy</button>
+                    </a>
                     <a th:href="'/products/'+${category.name}" class="disable_decoration border" style="background-color: #888888" th:each="category : ${categories}">
                     <button th:text="${category.name}"></button>
                     </a>
@@ -44,8 +47,9 @@
                         <img class="thumbnail-homepage" th:src="'data:image/png;base64, '+${product.image}"/>
                         <div style="text-align: center">
                             <br>
-                            <p th:text="${product.name}"></p>
-                            <p th:text="${#numbers.formatDecimal(product.price, 1, 'COMMA', 0, 'COMMA')}+' đ'"></p>
+                            <p style="color: black" th:text="${product.name}"></p>
+                            <p style="color: dimgrey; font-size: 20px"
+                               th:text="${#numbers.formatDecimal(product.price, 1, 'COMMA', 0, 'COMMA')}+' đ'"></p>
                         </div>
                         </a>
 

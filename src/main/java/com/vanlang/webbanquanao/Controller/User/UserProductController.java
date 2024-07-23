@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -23,8 +24,11 @@ public class UserProductController
     public String ShowProduct(@PathVariable long id, Model model)
     {
         model.addAttribute("product", productService.getProductById(id));
+        List<String> descriptionLines = Arrays.asList(productService.getProductById(id).getDescription().split("\n"));
+        model.addAttribute("productDescriptionLines", descriptionLines);
         return "/guest/product";
     }
+
 
 
     /////////////////////// API /////////////////////////////

@@ -28,4 +28,11 @@ public interface  ProductRepository extends JpaRepository<Product, Long>
     @Query(value = "SELECT SUM(sold) from products", nativeQuery = true)
     public int getSoldOfAllProducts();
 
+    @Query(value = "SELECT * FROM products ORDER BY id DESC",nativeQuery = true)
+    public List<Product> findAllProductDesc();
+
+    @Query(value = "SELECT * FROM products WHERE sold > 0 ORDER BY sold DESC", nativeQuery = true)
+    public List<Product> findAllBestSellers();
+
+
 }

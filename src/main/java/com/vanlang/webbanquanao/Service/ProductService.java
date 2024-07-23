@@ -45,6 +45,16 @@ public class ProductService
         return repository.findAll();
     }
 
+    public List<Product> getAllBestSellers()
+    {
+        return repository.findAllBestSellers();
+    }
+
+    public List<Product> getAllProductsDesc()
+    {
+        return repository.findAllProductDesc();
+    }
+
     public Product getProductById(long id)
     {
         return repository.findById(Long.valueOf(id)).orElse(null);

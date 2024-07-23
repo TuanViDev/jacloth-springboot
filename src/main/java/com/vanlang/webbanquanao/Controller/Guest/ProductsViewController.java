@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
 public class ProductsViewController
 {
@@ -21,9 +24,17 @@ public class ProductsViewController
     @GetMapping("/products")
     public String showAllProducts(Model model)
     {
-        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("products", productService.getAllProductsDesc());
         model.addAttribute("categories", categoryService.getAllCategories());
         return "/guest/products";
+    }
+
+    @GetMapping("/products/best-sellers")
+    public String showBestSellers(Model model)
+    {
+        model.addAttribute("products", productService.getAllBestSellers());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        return "/guest/productsBestSellers";
     }
 
     @GetMapping("/products/{name}")

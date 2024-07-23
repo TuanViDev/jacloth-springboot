@@ -21,6 +21,7 @@ public class Product
     private String name;
     private int price;
     private int quantity;
+    @Lob
     private String description;
     private int sold;
     @ManyToOne

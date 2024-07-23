@@ -67,8 +67,6 @@ public class UserInvoiceController
             final String returnUrl = "http://localhost/checkout/payos/webhook";
             final String cancelUrl = "http://localhost/checkout/payos/webhook?paidUnsuccessful";
             // Gen order code
-//            String currentTimeString = String.valueOf(new Date().getTime());
-//            int orderCode = Integer.parseInt(currentTimeString.substring(currentTimeString.length() - 6));
 
             List<ItemData> itemList = new ArrayList<>();
 
