@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin-layout}">
+<head><title>Thống kê</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+<body>
+<section layout:fragment="content"><br><br>
+
+<!--    <h1>Categories List</h1>-->
+
+    <div class="homepage">
+
+        <br><br><br>
+
+        <div class="home-content">
+            <div class="homeHeader container d-flex justify-content-center p-4"
+                 style="background-color: black;color: white; ;width: 100%">
+                <p class="h1 d-flex justify-content-center">THỐNG KÊ</p>
+            </div>
+            <div class="showcategory container p-5">
+
+                <div class="statistic-layout p-3" style="background-color: #9c94ff;color:white">
+                    <div><p class="h2" ><i class="fa-solid fa-shirt m-3"></i>Thống kê sản phẩm<p></div>
+                    <hr>
+                    <p class="h5 p-1" th:text="'Tổng số sản phẩm: '+${productCount}"></p>
+                    <p class="h5 p-1" th:text="'Tổng số danh mục: '+${categoryCount}"></p>
+                    <p class="h5 p-1" th:text="'Tổng số sản phẩm đã bán: '+${productSold}"></p>
+                </div>
+
+                <br><br>
+
+                <div class="statistic-layout p-3" style="background-color: lightskyblue;color:white">
+                    <div><p class="h2" ><i class="fa-solid fa-file-invoice-dollar m-3"></i>Thống kê đơn hàng<p></div>
+                    <hr>
+                    <p class="h5 p-1" th:text="'Tổng số đơn hàng : '+${invoiceCount}"></p>
+                    <p class="h5 p-1" th:text="'Tổng doanh số: '+${#numbers.formatDecimal(totalAmount, 1, 'COMMA', 0, 'COMMA')}+' đ'"></p>
+                </div>
+
+                <br><br>
+
+                <div class="statistic-layout p-3" style="background-color: orchid;color:white">
+                    <div><p class="h2" ><i class="fa-solid fa-user m-3"></i>Thống kê người dùng<p></div>
+                    <hr>
+                    <p class="h5 p-1" th:text="'Số khách hàng đăng ký: '+${userCount}"></p>
+                    <p class="h5 p-1" th:text="'Số Admin: '+${adminCount}"></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin-layout}">
+<head><title th:text="${title} ?: 'Product'">Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+<section layout:fragment="content"><h1>Products List</h1>
+
+    <div class="homepage">
+
+        <br><br><br>
+
+        <div class="home-content">
+            <div class="homeHeader container d-flex justify-content-center p-4"
+                 style="background-color: black;color: white; ;width: 100%">
+                <p class="h1 d-flex justify-content-center">QUẢN LÝ NGƯỜI DÙNG</p>
+            </div>
+            <div class="showcategory container p-5">
+<!--                <h1 class="d-flex justify-content-center">QUẢN LÝ NGƯỜI DÙNG</h1>-->
+
+                <div>
+                    <br>
+                    <div th:if="${param.updateRoleSuccess}" class="btn btn-success">
+                        Set role thành công
+                    </div>
+                    <div th:if="${param.updateRoleUnsuccess}" class="btn btn-success">
+                        Set role thất bại
+                    </div>
+                    <div th:if="${param.deletedSuccess}" class="btn btn-success">
+                        Xóa user thành công
+                    </div>
+                    <div th:if="${param.deletedUnsuccess}" class="btn btn-danger">
+                        Xóa user thất bại
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.role}"></td>
+                        <td>
+                            <form th:action="@{/admin/usermanager/updaterole}" method="POST" style="display:inline;">
+                                <input type="hidden" name="id" th:value="${user.id}">
+                                <input type="hidden" name="role" value="ADMIN">
+                                <button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('Are you sure?')">Set Admin</button>
+                            </form>
+                            <form th:action="@{/admin/usermanager/updaterole}" method="POST" style="display:inline;">
+                                <input type="hidden" name="id" th:value="${user.id}">
+                                <input type="hidden" name="role" value="USER">
+                                <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Are you sure?')">Set User</button>
+                            </form>
+                            <form th:action="@{/admin/usermanager/delete}" method="POST" style="display:inline;">
+                                <input type="hidden" name="id" th:value="${user.id}">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Xóa tài khoản</button>
+                            </form>
+                        </td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head><title th:text="${title} ?: 'Product'">Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+<section layout:fragment="content"><h1>Products List</h1>
+
+    <br><br><br>
+
+    <div class="homepage">
+
+        <br><br><br>
+
+        <div class="home-content">
+            <div class="showcategory container p-5">
+                <h1 class="d-flex justify-content-center">THANH TOÁN TRỰC TUYẾN QUA PAYOS</h1>
+
+                <form action="/create-payment-link" method="post" CLASS="pt-5 d-flex justify-content-center">
+                    <input type="hidden" name="invoiceId" th:value="${invoice.id}">
+                    <button style="height: 100px;width: 500px" class="btn" type="submit" id="create-payment-link-btn"><p class="h3">Tiến hành thanh toán</p></button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</section>
+</body>
+</html>

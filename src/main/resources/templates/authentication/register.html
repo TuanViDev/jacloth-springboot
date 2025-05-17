@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/dangky.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Đăng Ký</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <a href="#" class="logo"><img src="/img/nowlogo.png" alt="Logo"></a>
+            <br>
+            <h1>Đăng ký</h1>
+            <form id="registerForm" action="/register" method="POST">
+
+                <div class="input-group">
+                    <label for="username">Tên đăng nhập:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="repassword">Nhập lại mật khẩu:</label>
+                    <input type="password" id="repassword" required>
+                </div>
+
+                <div class="btn-group p-3">
+                    <button id="submit" type="submit" class="btn-register1">Đăng ký</button>
+                </div>
+
+                <div th:if="${param.usernameExist}" class="btn btn-danger">
+                    Tên đăng nhập đã tồn tại
+                </div>
+
+                <div th:if="${param.error}" class="btn btn-danger">
+                    Đăng ký thất bại
+                </div>
+
+                <button style="display:none;" class="btn btn-danger" id="lengthError">Mật khẩu phải có ít nhất 8 ký tự.</button>
+                <br>
+                <button style="display:none;" class="btn btn-danger" id="matchError">Mật khẩu không khớp với "Nhập lại mật khẩu".</button>
+
+            </form>
+
+            <script>
+                document.getElementById('registerForm').addEventListener('submit', function(event) {
+                    var password = document.getElementById('password').value;
+                    var repassword = document.getElementById('repassword').value;
+                    var lengthErrorDiv = document.getElementById('lengthError');
+                    var matchErrorDiv = document.getElementById('matchError');
+
+                    var hasError = false;
+
+                    if (password.length < 8) {
+                        lengthErrorDiv.style.display = 'block';
+                        hasError = true;
+                    } else {
+                        lengthErrorDiv.style.display = 'none';
+                    }
+
+                    if (password !== repassword) {
+                        matchErrorDiv.style.display = 'block';
+                        hasError = true;
+                    } else {
+                        matchErrorDiv.style.display = 'none';
+                    }
+
+                    if (hasError) {
+                        event.preventDefault();
+                    }
+                });
+            </script>
+
+
+            <br>
+            <hr>
+            <br>
+            <div>
+                <p>Bạn đã có tài khoản ?</p>
+                <a href="/login" class="disable_decoration"><button type="button" class="btn btn-secondary">Đăng nhập</button></a>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+</html>

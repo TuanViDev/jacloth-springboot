@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Layout page</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<header>
+        <nav>
+            <a href="/" class="logo h1 disable_decoration"><img src="/img/logo.png" alt="Logo">JACLOTH | ADMIN PANEL</a>
+            <ul class="nav-links">
+                <li><a href="/admin/statistic">Thống kê</a></li>
+                <li><a href="/admin/category/list">Quản lý danh mục</a></li>
+                <li><a href="/admin/product/list">Quản lý sản phẩm</a></li>
+                <li><a href="/admin/usermanager/list">Quản lý người dùng</a></li>
+                <li><a href="/admin/invoice/list">Quản lý đơn hàng</a></li>
+<!--                <li><a href="/"><button class="btn btn-warning">Trở lại trang người dùng</button></a></li>-->
+                </div>
+            </ul>
+            <div class="search">
+<!--                <input type="text" name="search" placeholder="Search..">-->
+<!--            </div>-->
+<!--            <div class="nav-icons">-->
+<!--                <a href="cart.html"><img src="img/giohang.png"  alt="Cart"></a>-->
+            </div>
+        </nav>
+</header>
+<section layout:fragment="content">
+<!--<section layout:fragment="content">-->
+<!--    <p>Page content goes here</p>-->
+</section>
+<footer>
+    <div class="footer">
+        <div class="container">
+            <div class="follow-us">
+                <h3>INTRODUCE</h3>
+                <ul>
+                    <li>SPRING BOOT</li>
+                    <li>WEB BAN HANG</li>
+                    <li>JACLOTH</li>
+                </ul>
+            </div>
+            <div class="about-us">
+                <h3>OUR TEAM CONSISTS OF:</h3>
+                <ul>
+                    <li>NGUYEN NHAT HAO</li>
+                    <li>VU NGUYEN TUAN VI</li>
+                    <li>DOAN THANH TUAN VU</li>
+                    <li>NGUYEN TIEN PHUC</li>
+
+                </ul>
+            </div>
+            <div class="contact-us">
+                <h3>CONTACT US IN VANLANG UNIVERSITY</h3>
+                <ul>
+                    <li>Cơ sở 1: 45 Nguyễn Khắc Nhu, P. Cô Giang, Q.1, TP. HCM</li>
+                    <li>Cơ sở 2: 233A Phan Văn Trị, P.11, Q. Bình Thạnh, TP. HCM</li>
+                    <li>Cơ sở 3: 69/68 Đặng Thùy Trâm, P. 13, Q. Bình Thạnh, TP. HCM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>_____ Đồ án nhóm cuối kỳ môn Lập Trình Java Nâng Cao _____</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

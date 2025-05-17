@@ -1,0 +1,97 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f2f5;
+}
+
+.login-box {
+    background: white;
+    padding: 20px 30px; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    max-width: 350px; 
+    text-align: center;
+}
+
+.login-box img {
+    width: 150px; 
+    height: 150px; 
+    margin-bottom: -20px;
+    margin-top: -10px;
+}
+
+.login-box h1 {
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: bold;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 95%; 
+    padding: 8px; 
+    padding-top: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px; 
+}
+
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-group button {
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.btn-group button:hover {
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid black;
+}
+
+.btn-register {
+    background: #333;
+    color: white;
+    padding: 13px 40px;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
+
+.btn-login {
+    background: #333;
+    color: white;
+    padding: 13px 50px;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
+.cancal a{
+    text-decoration: none;
+    color: red;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin-layout}">
+<head><title>Chỉnh sửa sản phẩm</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<section layout:fragment="content" class="mt-5">
+    <div class="homepage">
+
+        <br><br><br>
+
+        <div class="home-content">
+            <div class="homeHeader container d-flex justify-content-center p-4"
+                 style="background-color: black;color: white; ;width: 100%">
+                <p class="h1 d-flex justify-content-center">CHỈNH SỬA SẢN PHẨM</p>
+            </div>
+            <div class="showcategory container p-5">
+<!--                <h1 class="d-flex justify-content-center">CHỈNH SỬA SẢN PHẨM</h1>-->
+
+                <div class="p-1">
+                    <br>
+                    <div th:if="${param.error}" class="btn btn-danger">
+                        Chỉnh sửa sản phẩm thất bại
+                    </div>
+                    <div th:if="${param.success}" class="btn btn-success">
+                        Chỉnh sửa sản phẩm thành công
+                    </div>
+                </div>
+                <br>
+
+                <form action="/admin/product/update" id="productupdate-form" method="POST" enctype="multipart/form-data" style="width: 300px">
+
+                    <div class="mb-3">
+                        <label for="id" class="form-label">ID:</label>
+                        <input required type="text" id="id" name="id" class="form-control" readonly th:value="${product.id}"/>
+                        <img id="image-preview" th:src="'data:image/png;base64, '+${product.getImage()}" alt="Image Preview" style="display: block; width: 100%; margin-top: 10px;"/>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Hình ảnh:</label>
+                        <input type="file" accept="image/*" id="image" name="image" class="form-control"/>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Tên sản phẩm:</label>
+                        <input required type="text" id="name" name="name" class="form-control" th:value="${product.name}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Mô tả:</label>
+                        <!--            <input required type="text" id="description" name="description" class="form-control" th:value="${product.description}"/>-->
+                        <textarea id="description" form="productupdate-form" name="description" class="form-control" required th:text="${product.description}"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Đơn giá:</label>
+                        <input required type="number" id="price" name="price" class="form-control" th:value="${product.price}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Số lượng:</label>
+                        <input required type="number" id="quantity" name="quantity" class="form-control" th:value="${product.quantity}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="categoryId" class="form-label">Danh mục:</label>
+                        <br>
+                        <select required class="form-control" name="categoryId" id="categoryId" th:value="${product.category_id}">
+                            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                        </select>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-lg btn-primary">Cập nhật</button>
+
+                    <script>
+                        document.getElementById('image').addEventListener('change', function(event) {
+                            const [file] = event.target.files;
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    const img = document.getElementById('image-preview');
+                                    img.src = e.target.result;
+                                    img.style.display = 'block';
+                                }
+                                reader.readAsDataURL(file);
+                            }
+                        });
+                    </script>
+
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+</body>
+</html>
